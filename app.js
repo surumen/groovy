@@ -47,14 +47,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-// module.exports = webAudioPlayer;
-// function webAudioPlayer (src, opt) {
-//   if (!src) throw new TypeError('must specify a src parameter')
-//   opt = opt || {}
-//   if (opt.buffer) return buffer(src, opt)
-//   else return media(src, opt)
-// }
 app.use(function webAudioPlayer (src, opt) {
   if (!src) throw new TypeError('must specify a src parameter')
   opt = opt || {}
@@ -62,5 +54,12 @@ app.use(function webAudioPlayer (src, opt) {
   else return media(src, opt)
 });
 
+module.exports = webAudioPlayer;
+function webAudioPlayer (src, opt) {
+  if (!src) throw new TypeError('must specify a src parameter')
+  opt = opt || {}
+  if (opt.buffer) return buffer(src, opt)
+  else return media(src, opt)
+};
 
 module.exports = app;

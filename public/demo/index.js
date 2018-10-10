@@ -1,4 +1,4 @@
-var audioPlayer = require('../')
+var audioPlayer = require('../../app')
 var createApp = require('canvas-loop');
 var createAnalyser = require('web-audio-analyser');
 var createAudioContext = require('ios-safe-audio-context');
