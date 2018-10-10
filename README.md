@@ -8,6 +8,10 @@ npm install
 npm start
 ```
 
+### Demo
+
+![alt text](https://raw.githubusercontent.com/surumen/groovy/master/public/groove.gif "Groovy")
+
 ## License
 
 MIT
