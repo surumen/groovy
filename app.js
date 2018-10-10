@@ -9,9 +9,12 @@ var usersRouter = require('./routes/users');
 
 var buffer = require('./public/lib/buffer-source');
 var media = require('./public/lib/media-source');
+var demo = require('./public/demo/index');
 
+var favicon = require('serve-favicon');
 
 var app = express();
+
 
 app.set('views', path.join(__dirname, 'views'));
 // view engine setup
@@ -24,8 +27,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/', demo);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,6 +48,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// module.exports = webAudioPlayer;
+// function webAudioPlayer (src, opt) {
+//   if (!src) throw new TypeError('must specify a src parameter')
+//   opt = opt || {}
+//   if (opt.buffer) return buffer(src, opt)
+//   else return media(src, opt)
+// }
 app.use(function webAudioPlayer (src, opt) {
   if (!src) throw new TypeError('must specify a src parameter')
   opt = opt || {}
@@ -50,5 +62,5 @@ app.use(function webAudioPlayer (src, opt) {
   else return media(src, opt)
 });
 
-module.exports = webAudioPlayer;
+
 module.exports = app;

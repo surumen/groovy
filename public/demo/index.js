@@ -1,31 +1,38 @@
 var audioPlayer = require('../')
-var createApp = require('canvas-loop')
-var createAnalyser = require('web-audio-analyser')
-var createAudioContext = require('ios-safe-audio-context')
-var detectAutoplay = require('detect-audio-autoplay')
-var detectMediaSource = require('detect-media-element-source')
-var average = require('analyser-frequency-average')
-var tapEvent = require('tap-event')
+var createApp = require('canvas-loop');
+var createAnalyser = require('web-audio-analyser');
+var createAudioContext = require('ios-safe-audio-context');
+var detectAutoplay = require('detect-audio-autoplay');
+var detectMediaSource = require('detect-media-element-source');
+var average = require('analyser-frequency-average');
+var tapEvent = require('tap-event');
 
 // get our canvas element & 2D context
-var canvas = document.querySelector('canvas')
-var ctx = canvas.getContext('2d')
+var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
 
 // provide some info to the user
-var loading = document.querySelector('.loading')
-var clickToPlay = document.querySelector('.play')
+var loading = document.querySelector('.loading');
+var clickToPlay = document.querySelector('.play');
 
 // full-screen and retina scaled app
 var app = createApp(canvas, {
   scale: window.devicePixelRatio
-})
+});
+
+var audioPlayer = function (src, opt) {
+  if (!src) throw new TypeError('must specify a src parameter')
+  opt = opt || {}
+  if (opt.buffer) return buffer(src, opt)
+  else return media(src, opt)
+};
 
 // some devices need a "Click to Play"
-clickToPlay.style.display = 'block'
-loading.style.display = 'none'
+clickToPlay.style.display = 'block';
+loading.style.display = 'none';
 
 // On iOS, it has to be a tap event and not a drag + touchend...
-var onTap, onMouseDown
+var onTap, onMouseDown;
 
 onMouseDown = function (ev) {
   window.removeEventListener('touchstart', onTap)
@@ -34,11 +41,12 @@ onMouseDown = function (ev) {
   loading.style.display = 'block'
   clickToPlay.style.display = 'none'
   canplay()
-}
-onTap = tapEvent(onMouseDown)
+};
 
-window.addEventListener('touchstart', onTap)
-window.addEventListener('mousedown', onMouseDown)
+onTap = tapEvent(onMouseDown);
+
+window.addEventListener('touchstart', onTap);
+window.addEventListener('mousedown', onMouseDown);
 
 function canplay () {
   // Create an iOS-safe AudioContext which fixes
@@ -53,7 +61,7 @@ function canplay () {
     var shouldBuffer = !supportsMediaElement
     start(audioContext, shouldBuffer)
   }, audioContext)
-}
+};
 
 function start (audioContext, shouldBuffer) {
   // List of sources, usually good to provide

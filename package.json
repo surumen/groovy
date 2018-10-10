@@ -6,12 +6,26 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "analyser-frequency-average": "^1.0.0",
+    "browser-media-mime-type": "^1.0.0",
+    "canvas-loop": "^1.0.7",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "detect-audio-autoplay": "^1.1.1",
+    "detect-media-element-source": "^1.1.2",
     "ejs": "^2.6.1",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
+    "ios-safe-audio-context": "^1.0.1",
     "jade": "~1.11.0",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "object-assign": "^4.1.1",
+    "right-now": "^1.0.0",
+    "serve-favicon": "^2.5.0",
+    "simple-media-element": "^1.1.0",
+    "tap-event": "^1.0.0",
+    "web-audio-analyser": "^2.0.1",
+    "xhr": "^2.5.0",
+    "xhr-progress": "0.0.0"
   }
 }
