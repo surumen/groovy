@@ -25,6 +25,7 @@
     "simple-media-element": "^1.1.0",
     "tap-event": "^1.0.0",
     "web-audio-analyser": "^2.0.1",
+    "window-or-global": "^1.0.1",
     "xhr": "^2.5.0",
     "xhr-progress": "0.0.0"
   }

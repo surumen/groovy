@@ -7,6 +7,8 @@ var detectMediaSource = require('detect-media-element-source');
 var average = require('analyser-frequency-average');
 var tapEvent = require('tap-event');
 
+var window = require('window-or-global');
+
 // get our canvas element & 2D context
 var canvas = document.querySelector('canvas');
 var ctx = canvas.getContext('2d');
